@@ -1,7 +1,7 @@
 name : main
 on: [workflow_dispatch]
 jobs:
- checkout:
+ build-msys-cross-in-ubuntu:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v4.2.0
@@ -12,6 +12,6 @@ jobs:
        # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
        fetch-depth: 1
        # optional, default is 1
-    - run: sudo apt install software-properties-common dnf autoconf automake libtool cpio gcc make flex yacc dino gcc-multilib pkg-config
+    - run: sudo apt install software-properties-common dnf autoconf automake libtool cpio gcc make flex yacc gcc-multilib pkg-config
     - run: sudo dnf install https://github.com/rpmsphere/noarch/raw/refs/heads/master/r/rpmsphere-release-38-1.noarch.rpm
     - run: m=$(uname -m);sudo dnf install https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm
