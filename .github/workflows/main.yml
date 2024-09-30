@@ -7,7 +7,9 @@ jobs:
     - uses: actions/checkout@v4.2.0
       with:
        # Repository name with owner. For example, actions/checkout
-       repository: https://github.com/msys2/msys2-runtime.git# optional, default is ${{ github.repository }}
+       repository: https://github.com/msys2/msys2-runtime.git
+       # optional, default is ${{ github.repository }}
        # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
-       fetch-depth: s# optional, default is 1
+       fetch-depth: 1
+       # optional, default is 1
     - run: sudo apt install software-properties-common autoconf automake libtool cpio gcc make flex yacc dino gcc-multilib pkg-config
