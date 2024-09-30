@@ -14,4 +14,5 @@ jobs:
        # optional, default is 1
     - run: sudo apt -qy install software-properties-common dnf autoconf automake libtool cpio gcc make flex yacc gcc-multilib pkg-config
     - run: sudo dnf -qy install https://github.com/rpmsphere/noarch/raw/refs/heads/master/r/rpmsphere-release-38-1.noarch.rpm
+    - run: m=$(uname -m);sudo dnf -qy install glibc.$m
     - run: m=$(uname -m);sudo dnf -qy install --releasever 40 https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm
