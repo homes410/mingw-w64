@@ -17,6 +17,6 @@ jobs:
     #- run: m=$(uname -m);sudo dnf -qy install --releasever 40 https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm
     - run: m=$(uname -m);echo https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm;
            curl -L --compressed "https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm" -o $GITHUB_WORKSPACE/cocom-0.996-10.1.$m.rpm;
-           mkdir -p $GITHUB_WORKSPACE/cocom-0.996-10.1.$m;rpm2cpio $GITHUB_WORKSPACE/cocom-0.996-10.1.$m.rpm|cpio -imD $GITHUB_WORKSPACE/cocom-0.996-10.1.$m;
+           mkdir -p $GITHUB_WORKSPACE/cocom-0.996-10.1.$m;rpm2cpio $GITHUB_WORKSPACE/cocom-0.996-10.1.$m.rpm|cpio -imdD $GITHUB_WORKSPACE/cocom-0.996-10.1.$m;
            export PATH=$PATH:$GITHUB_WORKSPACE/cocom-0.996-10.1.$m/usr/bin;
-           find $GITHUB_WORKSPACE -type d;
+           find $GITHUB_WORKSPACE/cocom-0.996-10.1.$m -type d;
