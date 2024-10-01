@@ -27,8 +27,8 @@ jobs:
            cd msys2-runtime;
            curl -L --compressed https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
            autoconf2.69;
-           sed -E 's/--host=\$\{target_alias\}/--host=${host_alias}/' Makefile.in > Makefile.in2
-           mv Makefile.in2 Makefile.in
+           sed -E 's/--host=\$\{target_alias\}/--host=${host_alias}/' Makefile.in > Makefile.in2;
+           mv Makefile.in2 Makefile.in;
            (cd winsup; ./autogen.sh);
            mkdir -p build install;
            cd build;
