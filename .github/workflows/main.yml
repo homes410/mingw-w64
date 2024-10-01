@@ -22,7 +22,7 @@ jobs:
            export PATH=$PATH:$GITHUB_WORKSPACE/cocom-0.996-10.1.$m/usr/bin;
            OPT="-g -O2";
            export PATH=$PATH:/usr/x86_64-w64-mingw32/bin;
-           CFLAGS_FOR_TARGET="-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 ${OPT} -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields";
+           CFLAGS_FOR_TARGET="-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 ${OPT} -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields -m128bit-long-double";
            p=x86_64-w64-mingw32;
            cd msys2-runtime;
            curl -L --compressed https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
