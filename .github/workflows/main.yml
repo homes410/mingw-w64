@@ -25,7 +25,7 @@ jobs:
            CFLAGS="-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 ${OPT} -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields";
            p=x86_64-w64-mingw32;
            cd msys2-runtime;
-           curl https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
+           curl -L --compressed https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
            autoconf2.69;
            (cd winsup; ./autogen.sh);
            mkdir -p build install;
