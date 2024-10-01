@@ -26,7 +26,7 @@ jobs:
            p=x86_64-w64-mingw32;
            cd msys2-runtime;
            curl https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
-           autoconf-2.69;
+           autoconf2.69;
            (cd winsup; ./autogen.sh);
            mkdir -p build install;
            cd build;
