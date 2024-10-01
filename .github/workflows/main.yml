@@ -13,7 +13,7 @@ jobs:
        fetch-depth: 1
        # optional, default is 1
        path: msys2-runtime
-    - run: sudo apt -qy install software-properties-common dnf autoconf automake libtool cpio gcc make flex yacc gcc-multilib pkg-config zstd g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix diffutils patch
+    - run: sudo apt -qy install software-properties-common dnf autoconf autoconf2.69 automake libtool cpio gcc make flex yacc gcc-multilib pkg-config zstd g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix diffutils patch
     #- run: sudo dnf -qy install https://github.com/rpmsphere/noarch/raw/refs/heads/master/r/rpmsphere-release-38-1.noarch.rpm
     #- run: m=$(uname -m);sudo dnf -qy install --releasever 40 https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm
     - run: m=$(uname -m);echo https://github.com/rpmsphere/$m/raw/refs/heads/master/c/cocom-0.996-10.1.$m.rpm;
@@ -26,7 +26,7 @@ jobs:
            p=x86_64-w64-mingw32;
            cd msys2-runtime;
            curl https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf 0000.tar -O 0000.patch|patch -p1;
-           autoconf;
+           autoconf-2.69;
            (cd winsup; ./autogen.sh);
            mkdir -p build install;
            cd build;
