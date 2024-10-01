@@ -35,7 +35,7 @@ jobs:
            guess=$(../config.guess);
            ../configure --prefix=$(realpath $(pwd)/../install) --disable-doc CC=${p}-gcc CXX=${p}-g++ --host=$guess --target=${p} CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET}" CXXFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET}" PKG_CONFIG_PATH=/usr/${p}/lib/pkgconfig PKG_CONFIG_LIBDIR=/usr/${p}/lib/pkgconfig PKG_CONFIG_SYSROOT_DIR= --enable-shared "$@" LTLDFLAGS='-no-undefined' lt_allow_undefined_flag=yes lt_cv_deplibs_check_method=pass_all;
       shell: bash
-    - run: cd msys2-runtime/build;make;
+    - run: cd msys2-runtime/build;make V=1;
       continue-on-error: true
     - run: cd $GITHUB_WORKSPACE;
            tar cvfz $GITHUB_WORKSPACE/msys2-runtime-output.tar.gz --numeric-owner msys2-runtime/build;
