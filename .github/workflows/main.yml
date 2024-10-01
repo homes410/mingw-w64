@@ -22,7 +22,7 @@ jobs:
            export PATH=$PATH:$GITHUB_WORKSPACE/cocom-0.996-10.1.$m/usr/bin;
            OPT="-g -O2";
            export PATH=$PATH:/usr/x86_64-w64-mingw32/bin;
-           CFLAGS="-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 ${OPT} -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields";
+           CFLAGS_FOR_TARGET="-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 ${OPT} -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields";
            p=x86_64-w64-mingw32;
            cd msys2-runtime;
            curl -L --compressed https://github.com/homes410/mingw-w64/raw/refs/heads/master/0000.tar|tar xf - -O 0000.patch|patch -p1;
@@ -31,16 +31,18 @@ jobs:
            mkdir -p build install;
            cd build;
            guess=$(../config.guess);
-           ../configure --prefix=$(realpath $(pwd)/../install) --disable-doc CC=${p}-gcc CXX=${p}-g++ --host=$guess --target=${p} CFLAGS="${CFLAGS}" CXXFLAGS="${CFLAGS}" PKG_CONFIG_PATH=/usr/${p}/lib/pkgconfig PKG_CONFIG_LIBDIR=/usr/${p}/lib/pkgconfig PKG_CONFIG_SYSROOT_DIR= --enable-shared "$@" LTLDFLAGS='-no-undefined' lt_allow_undefined_flag=yes lt_cv_deplibs_check_method=pass_all;
+           ../configure --prefix=$(realpath $(pwd)/../install) --disable-doc CC=${p}-gcc CXX=${p}-g++ --host=$guess --target=${p} CFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET}" CXXFLAGS_FOR_TARGET="${CFLAGS_FOR_TARGET}" PKG_CONFIG_PATH=/usr/${p}/lib/pkgconfig PKG_CONFIG_LIBDIR=/usr/${p}/lib/pkgconfig PKG_CONFIG_SYSROOT_DIR= --enable-shared "$@" LTLDFLAGS='-no-undefined' lt_allow_undefined_flag=yes lt_cv_deplibs_check_method=pass_all;
            make;
+           tar cfz msys2-runtime-output.tar.gz --numeric-owner msys2-runtime/build 
            #find $GITHUB_WORKSPACE/cocom-0.996-10.1.$m -type d;
       continue-on-error: true
     - uses: actions/upload-artifact@v3.2.1-node20
       with:
       # Artifact name
-       name: build-output# optional, default is artifact
+       name: build-output
+       # optional, default is artifact
       # A file, directory or wildcard pattern that describes what to upload
-       path: msys2-runtime/build 
+       path: msys2-runtime-output.tar.gz
       # The desired behavior if no files are found using the provided path.
       #Available Options:
       #  warn: Output a warning but do not fail the action
