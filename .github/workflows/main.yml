@@ -37,6 +37,7 @@ jobs:
            tar cvfz $GITHUB_WORKSPACE/msys2-runtime-output.tar.gz --numeric-owner msys2-runtime/build;
            exit 0;
            #find $GITHUB_WORKSPACE/cocom-0.996-10.1.$m -type d;
+      shell: bash
       continue-on-error: true
     - uses: actions/upload-artifact@v3.2.1-node20
       with:
