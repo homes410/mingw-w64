@@ -37,6 +37,8 @@ jobs:
       shell: bash
     - run: cd msys2-runtime/build;x86_64-w64-mingw32-gcc -v;x86_64-w64-mingw32-gcc -x c -dD -E /dev/null;make;
       continue-on-error: true
+    - run: cd msys2-runtime/build;x86_64-w64-mingw32-gcc -v;make -C x86_64-w64-mingw32/newlib V=1 libm/ld/libm_a-e_acoshl.o
+      continue-on-error: true
     - run: cd $GITHUB_WORKSPACE;
            tar cvfz $GITHUB_WORKSPACE/msys2-runtime-output.tar.gz --numeric-owner msys2-runtime/build;
            exit 0;
