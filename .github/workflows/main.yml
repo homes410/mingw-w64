@@ -37,7 +37,7 @@ jobs:
       shell: bash
     - run: cd msys2-runtime/build;x86_64-w64-mingw32-gcc -v;x86_64-w64-mingw32-gcc -x c -dD -E /dev/null;make;
       continue-on-error: true
-    - run: cd msys2-runtime/build;x86_64-w64-mingw32-gcc -v;make -C x86_64-w64-mingw32/newlib V=1 libm/ld/libm_a-e_acoshl.o
+    - run: cd msys2-runtime/build;x86_64-w64-mingw32-gcc -v;make -C x86_64-w64-mingw32/newlib V=1 CFLAGS='-DWINVER=0x0A00 -DNTDDI_VERSION=0x0A000008 -D_WIN32_WINNT=0x0A00 -g -O2 -march=bdver4 -mtune=bdver4 -mthreads -fwrapv -fno-strict-aliasing -fvisibility=default -mstackrealign -mno-ms-bitfields -m128bit-long-double -save-temps' libm/ld/libm_a-e_acoshl.o
       continue-on-error: true
     - run: cd $GITHUB_WORKSPACE;
            tar cvfz $GITHUB_WORKSPACE/msys2-runtime-output.tar.gz --numeric-owner msys2-runtime/build;
